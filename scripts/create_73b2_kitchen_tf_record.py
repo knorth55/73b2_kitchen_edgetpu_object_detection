@@ -120,10 +120,12 @@ def create_tf_record(root_dir, output_path):
         instance_label_paths.append(instance_label_path)
 
     writer = tf.python_io.TFRecordWriter(output_path)
+    print('Reading from 73B2 kitchen dataset.')
     logging.info('Reading from 73B2 kitchen dataset.')
     for i, (img_path, class_label_path, instance_label_path) in enumerate(
             zip(img_paths, class_label_paths, instance_label_paths)):
         if i % 100 == 0:
+            print('On image {} of {}'.format(i, len(img_paths)))
             logging.info('On image {} of {}'.format(i, len(img_paths)))
 
         tf_example = get_tf_example(
