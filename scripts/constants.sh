@@ -24,8 +24,9 @@ INPUT_TENSORS='normalized_input_image_tensor'
 OUTPUT_TENSORS='TFLite_Detection_PostProcess,TFLite_Detection_PostProcess:1,TFLite_Detection_PostProcess:2,TFLite_Detection_PostProcess:3'
 
 
-OBJ_DET_DIR="$PWD"
-LEARN_DIR="/tensorflow/models/research/73b2_kitchen_learn"
+RESEARCH_DIR="/tensorflow/models/research"
+OBJ_DET_DIR="${RESEARCH_DIR}/73b2_kitchen_scripts"
+LEARN_DIR="${RESEARCH_DIR}/73b2_kitchen_learn"
 DATASET_DIR="${LEARN_DIR}/kitchen_dataset"
 CKPT_DIR="${LEARN_DIR}/ckpt"
 TRAIN_DIR="${LEARN_DIR}/train"

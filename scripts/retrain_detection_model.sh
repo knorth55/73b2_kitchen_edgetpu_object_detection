@@ -38,7 +38,8 @@ source "$PWD/constants.sh"
 
 mkdir "${TRAIN_DIR}"
 
-python object_detection/model_main.py \
+cd "${OBJ_DET_DIR}"
+python ${RESEARCH_DIR}/object_detection/model_main.py \
   --pipeline_config_path="${CKPT_DIR}/pipeline.config" \
   --model_dir="${TRAIN_DIR}" \
   --num_train_steps="${num_training_steps}" \
