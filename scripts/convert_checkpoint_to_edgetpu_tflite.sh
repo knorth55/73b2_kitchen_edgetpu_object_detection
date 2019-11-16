@@ -34,6 +34,11 @@ source "$PWD/constants.sh"
 
 mkdir "${OUTPUT_DIR}"
 
+echo "CREATING label txt..."
+python ${OBJ_DET_DIR}/create_73b2_kitchen_labels.py \
+  --data_dir ${DATASET_DIR} \
+  --output_dir ${OUTPUT_DIR}
+
 echo "EXPORTING frozen graph from checkpoint..."
 python ${RESEARCH_DIR}/object_detection/export_tflite_ssd_graph.py \
   --pipeline_config_path="${CKPT_DIR}/pipeline.config" \

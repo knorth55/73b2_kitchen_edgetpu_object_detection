@@ -65,14 +65,14 @@ def get_tf_example(
         if inst_lbl == 0:
             continue
         inst_mask = instance_label == inst_lbl
-        cls_lbl = np.argmax(np.bincount(class_label[inst_mask]))
+        cls_lbl = np.argmax(np.bincount(class_label[inst_mask])) - 1
         classes.append(cls_lbl)
-        classes_text.append(fg_class_names[cls_lbl - 1].encode('utf8'))
+        classes_text.append(fg_class_names[cls_lbl].encode('utf8'))
         yind, xind = np.where(inst_mask)
-        xmin.append(float(xind.min() / width))
-        ymin.append(float(yind.min() / height))
-        xmax.append(float(xind.max() / width))
-        ymax.append(float(yind.max() / height))
+        xmin.append(float(xind.min() / float(width)))
+        ymin.append(float(yind.min() / float(height)))
+        xmax.append(float(xind.max() / float(width)))
+        ymax.append(float(yind.max() / float(height)))
 
     example = tf.train.Example(features=tf.train.Features(feature={
         'image/height': int64_feature(height),
