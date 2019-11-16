@@ -66,9 +66,8 @@ def get_tf_example(
             continue
         inst_mask = instance_label == inst_lbl
         cls_lbl = np.argmax(np.bincount(class_label[inst_mask]))
-        cls_lbl = cls_lbl - 1
         classes.append(cls_lbl)
-        classes_text.append(fg_class_names[cls_lbl].encode('utf8'))
+        classes_text.append(fg_class_names[cls_lbl - 1].encode('utf8'))
         yind, xind = np.where(inst_mask)
         xmin.append(float(xind.min() / width))
         ymin.append(float(yind.min() / height))
