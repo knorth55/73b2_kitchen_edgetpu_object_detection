@@ -39,7 +39,7 @@ def float_list_feature(value):
 
 
 def get_tf_example(
-        img_path, class_label_path, instance_label_path, fg_class_names):
+        img_path, class_label_path, instance_label_path, class_names):
     # image
     with tf.gfile.GFile(img_path, 'rb') as fid:
         encoded_jpg = fid.read()
@@ -65,9 +65,9 @@ def get_tf_example(
         if inst_lbl == 0:
             continue
         inst_mask = instance_label == inst_lbl
-        cls_lbl = np.argmax(np.bincount(class_label[inst_mask])) - 1
+        cls_lbl = np.argmax(np.bincount(class_label[inst_mask]))
         classes.append(cls_lbl)
-        classes_text.append(fg_class_names[cls_lbl].encode('utf8'))
+        classes_text.append(class_names[cls_lbl].encode('utf8'))
         yind, xind = np.where(inst_mask)
         xmin.append(float(xind.min() / float(width)))
         ymin.append(float(yind.min() / float(height)))
@@ -101,7 +101,6 @@ def create_tf_record(root_dir, output_path):
     with open(class_names_path, 'r') as f:
         class_names = f.readlines()
     class_names = [name.rstrip() for name in class_names]
-    fg_class_names = class_names[1:]
 
     img_paths = []
     class_label_paths = []
@@ -128,7 +127,7 @@ def create_tf_record(root_dir, output_path):
             logging.info('On image {} of {}'.format(i, len(img_paths)))
 
         tf_example = get_tf_example(
-            img_path, class_label_path, instance_label_path, fg_class_names)
+            img_path, class_label_path, instance_label_path, class_names)
         writer.write(tf_example.SerializeToString())
     writer.close()
 
