@@ -69,3 +69,6 @@ cd "${OBJ_DET_DIR}"
 python create_73b2_kitchen_tf_record.py \
     --data_dir="${DATASET_DIR}" \
     --output_dir="${DATASET_DIR}"
+python create_73b2_kitchen_label_map.py \
+    --data_dir="${DATASET_DIR}" \
+    --output_dir="${DATASET_DIR}"
