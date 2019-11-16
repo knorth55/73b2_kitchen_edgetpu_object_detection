@@ -109,9 +109,9 @@ def create_tf_record(root_dir, output_path):
     imgs_dir = os.path.join(root_dir, 'JPEGImages')
     class_labels_dir = os.path.join(root_dir, 'SegmentationClass')
     instance_labels_dir = os.path.join(root_dir, 'SegmentationObject')
-    for img_ in sorted(os.listdir(imgs_dir)):
-        img_path = os.path.join(imgs_dir, img_)
-        basename = img_.rstrip('.jpg')
+    for img_name in sorted(os.listdir(imgs_dir)):
+        img_path = os.path.join(imgs_dir, img_name)
+        basename = img_name.rstrip('.jpg')
         class_label_path = os.path.join(
             class_labels_dir, basename + '.npy')
         instance_label_path = os.path.join(
