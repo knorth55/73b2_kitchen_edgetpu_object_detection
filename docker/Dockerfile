@@ -61,5 +61,7 @@ ENV PYTHONPATH $PYTHONPATH:/tensorflow/models/research:/tensorflow/models/resear
 RUN apt-get update && \
     apt-get install -y wget vim emacs nano
 
+RUN pip install gdown 
+
 ARG work_dir=/tensorflow/models/research
 WORKDIR ${work_dir}
