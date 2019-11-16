@@ -9,8 +9,33 @@ mkdir learn/
 docker build docker/ --tag 73b2-kitchen-object-detection
 ```
 
-## Run
+## Training in docker
 
 ```
 bash run.bash
 ```
+
+Inside docker
+
+```
+cd 73b2_kitchen_scripts/
+# prepare dataset
+./prepare_checkpoint_and_dataset.sh
+# retraining
+NUM_TRAINING_STEPS=500 && NUM_EVAL_STEPS=100
+./retrain_detection_model.sh
+```
+
+## Run Tensorboard
+
+```
+docker exec -it 73b2-kitchen-edgetpu /bin/bash
+```
+
+Inside docker
+
+```
+tensorboard --logdir=./73b2_kitchen_learn/train
+```
+
+You can see Tensorboard in localhost:6006.
