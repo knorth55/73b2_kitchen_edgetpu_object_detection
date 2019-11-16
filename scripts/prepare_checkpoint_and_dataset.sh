@@ -47,6 +47,7 @@ ckpt_name="${ckpt_name_map[${network_type}]}"
 cd "${LEARN_DIR}"
 wget -O "${ckpt_name}.tar.gz" "$ckpt_link"
 tar zxvf "${ckpt_name}.tar.gz"
+rm "${CKPT_DIR}" -rf
 mv "${ckpt_name}" "${CKPT_DIR}"
 
 echo "PREPARING dataset..."
@@ -57,10 +58,14 @@ tar zxvf ${DATASET_TGZ}
 echo "CHOSING config file..."
 config_filename="${config_filename_map[${network_type}-${train_whole_model}]}"
 cd "${OBJ_DET_DIR}"
-cp "configs/${config_filename}" "${CKPT_DIR}/pipeline.config"
+cp "${OBJ_DET_DIR}/configs/${config_filename}" "${CKPT_DIR}/pipeline.config"
 
 echo "REPLACING variables in config file..."
 sed -i "s%CKPT_DIR_TO_CONFIGURE%${CKPT_DIR}%g" "${CKPT_DIR}/pipeline.config"
 sed -i "s%DATASET_DIR_TO_CONFIGURE%${DATASET_DIR}%g" "${CKPT_DIR}/pipeline.config"
 
 echo "CONVERTING dataset to TF Record..."
+cd "${OBJ_DET_DIR}"
+python create_73b2_kitchen_tf_record.py \
+    --data_dir="${DATASET_DIR}" \
+    --output_dir="${DATASET_DIR}"

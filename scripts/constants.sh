@@ -25,7 +25,7 @@ OUTPUT_TENSORS='TFLite_Detection_PostProcess,TFLite_Detection_PostProcess:1,TFLi
 
 
 OBJ_DET_DIR="$PWD"
-LEARN_DIR="${OBJ_DET_DIR}/../73b2_kitchen_learn"
+LEARN_DIR="/tensorflow/models/research/73b2_kitchen_learn"
 DATASET_DIR="${LEARN_DIR}/kitchen_dataset"
 CKPT_DIR="${LEARN_DIR}/ckpt"
 TRAIN_DIR="${LEARN_DIR}/train"
