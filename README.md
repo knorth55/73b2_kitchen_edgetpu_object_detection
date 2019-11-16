@@ -22,8 +22,7 @@ cd 73b2_kitchen_scripts/
 # prepare dataset
 ./prepare_checkpoint_and_dataset.sh
 # retraining
-NUM_TRAINING_STEPS=500 && NUM_EVAL_STEPS=100
-./retrain_detection_model.sh
+./retrain_detection_model.sh --num_training_steps 500 --num_eval_steps 100
 
 # change to edgetpu model
 ./convert_checkpoint_to_edgetpu_tflite.sh --checkpoint_num 500
