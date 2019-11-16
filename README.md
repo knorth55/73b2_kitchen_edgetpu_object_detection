@@ -20,12 +20,12 @@ Inside docker
 ```
 cd 73b2_kitchen_scripts/
 # prepare dataset
-./prepare_checkpoint_and_dataset.sh
+./prepare_checkpoint_and_dataset.sh --train_whole_model true --network_type mobilenet_v2_ssd
 # retraining
-./retrain_detection_model.sh --num_training_steps 500 --num_eval_steps 100
+./retrain_detection_model.sh --num_training_steps 50000 --num_eval_steps 2000 
 
 # change to edgetpu model
-./convert_checkpoint_to_edgetpu_tflite.sh --checkpoint_num 500
+./convert_checkpoint_to_edgetpu_tflite.sh --checkpoint_num 50000
 ```
 
 ## Run Tensorboard
