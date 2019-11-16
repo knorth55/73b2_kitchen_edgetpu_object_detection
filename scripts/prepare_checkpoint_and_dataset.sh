@@ -49,6 +49,11 @@ wget -O "${ckpt_name}.tar.gz" "$ckpt_link"
 tar zxvf "${ckpt_name}.tar.gz"
 mv "${ckpt_name}" "${CKPT_DIR}"
 
+echo "PREPARING dataset..."
+cd "${LEARN_DIR}"
+gdown ${DATASET_URL}
+tar zxvf ${DATASET_TGZ}
+
 echo "CHOSING config file..."
 config_filename="${config_filename_map[${network_type}-${train_whole_model}]}"
 cd "${OBJ_DET_DIR}"
@@ -59,7 +64,3 @@ sed -i "s%CKPT_DIR_TO_CONFIGURE%${CKPT_DIR}%g" "${CKPT_DIR}/pipeline.config"
 sed -i "s%DATASET_DIR_TO_CONFIGURE%${DATASET_DIR}%g" "${CKPT_DIR}/pipeline.config"
 
 echo "CONVERTING dataset to TF Record..."
-python ${HOME}/object_detection/dataset_tools/create_pet_tf_record.py \
-    --label_map_path="${DATASET_DIR}/pet_label_map.pbtxt" \
-    --data_dir="${DATASET_DIR}" \
-    --output_dir="${DATASET_DIR}"
