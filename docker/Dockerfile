@@ -17,7 +17,7 @@ FROM tensorflow/tensorflow:1.12.0-rc2-devel-gpu
 
 # Get the tensorflow models research directory, and move it into tensorflow
 # source folder to match recommendation of installation
-RUN git clone https://github.com/tensorflow/models.git && \
+RUN git clone https://github.com/tensorflow/models.git -b v1.12.0 && \
     mv models /tensorflow/models
 
 
