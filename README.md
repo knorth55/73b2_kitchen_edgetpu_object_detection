@@ -65,7 +65,7 @@ You can see Tensorboard in localhost:6006.
 
 ```
 cd 73b2_kitchen_edgetpu_object_detection/learn
-sudo chown 777 models
+sudo chmod 777 models
 cd models
 sudo chmod 755 *
 edgetpu_compiler output_tflite_graph.tflite
