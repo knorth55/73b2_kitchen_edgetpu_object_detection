@@ -20,7 +20,7 @@ bash run.bash
 Inside docker, run commands below
 
 ```bash
-cd 73b2_kitchen_learn/
+cd /tensorflow/models/research/73b2_kitchen_learn
 gdown https://drive.google.com/uc?id=1iBSxX7I0nFDJfYNpFEb1caSQ0nl4EVUa
 tar zxvf kitchen_dataset.tgz
 ```
@@ -33,7 +33,7 @@ For the annotation, please read [here](https://jsk-docs.readthedocs.io/projects/
 Inside docker, plear download and rename, setup your dataset directory like below.
 
 ```
-73b2_kitchen_learn/kitchen_dataset
+73b2_kitchen_edgetpu_object_detection/learn/kitchen_dataset  # or 73b2_kitchen_learn in docker container
 |-- train  # train dataset
 |   |-- JPEGImages
 |   |-- SegmentationClass
@@ -65,7 +65,7 @@ bash run.bash
 Inside docker
 
 ```bash
-cd 73b2_kitchen_scripts/
+cd /tensorflow/models/research/73b2_kitchen_scripts
 # prepare dataset
 ./prepare_checkpoint_and_dataset.sh --train_whole_model false --network_type mobilenet_v2_ssd
 # retraining on GPU 0
@@ -83,7 +83,7 @@ bash run.bash
 Inside docker
 
 ```bash
-cd 73b2_kitchen_scripts/
+cd /tensorflow/models/research/73b2_kitchen_scripts
 # prepare dataset
 ./prepare_checkpoint_and_dataset.sh --train_whole_model true --network_type mobilenet_v2_ssd
 # retraining on GPU 0
@@ -119,6 +119,6 @@ bash run.bash
 Inside docker
 
 ```bash
-cd 73b2_kitchen_learn/models
+cd /tensorflow/models/research/73b2_kitchen_learn/models
 edgetpu_compiler output_tflite_graph.tflite
 ```
