@@ -67,7 +67,7 @@ RUN pip install gdown
 # install edgetpu compiler
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
     echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | tee /etc/apt/sources.list.d/coral-edgetpu.list && \
-    apt-get update && apt-get install edgetpu-compiler
+    apt-get update && apt-get install -y edgetpu-compiler
 
 ARG work_dir=/tensorflow/models/research
 WORKDIR ${work_dir}
