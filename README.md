@@ -70,7 +70,6 @@ cd 73b2_kitchen_scripts/
 ./prepare_checkpoint_and_dataset.sh --train_whole_model false --network_type mobilenet_v2_ssd
 # retraining on GPU 0
 CUDA_VISIBLE_DEVICES=0 ./retrain_detection_model.sh --num_training_steps 500 --num_eval_steps 100 
-
 # change to edgetpu model
 ./convert_checkpoint_to_edgetpu_tflite.sh --checkpoint_num 500
 ```
@@ -89,7 +88,6 @@ cd 73b2_kitchen_scripts/
 ./prepare_checkpoint_and_dataset.sh --train_whole_model true --network_type mobilenet_v2_ssd
 # retraining on GPU 0
 CUDA_VISIBLE_DEVICES=0 ./retrain_detection_model.sh --num_training_steps 50000 --num_eval_steps 2000 
-
 # change to edgetpu model
 ./convert_checkpoint_to_edgetpu_tflite.sh --checkpoint_num 50000
 ```
@@ -121,6 +119,6 @@ bash run.bash
 Inside docker
 
 ```bash
-cd 73b2_kitchen_learn
+cd 73b2_kitchen_learn/models
 edgetpu_compiler output_tflite_graph.tflite
 ```
