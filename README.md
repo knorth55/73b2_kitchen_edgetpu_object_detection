@@ -1,3 +1,5 @@
+# This repo is merged to [knorth55/coral_usb_ros](https://github.com/knorth55/coral_usb_ros/tree/master/training/labelme_voc)
+
 # Coral TPU training scripts for 73B2 Kitchen dataset
 
 ## Preparation
